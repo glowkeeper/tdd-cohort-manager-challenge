@@ -5,7 +5,7 @@ class CohortManager {
     this.cohorts = []
   }
 
-  // getters and setters are an important topic in OOP - do some research on the topic ;)
+  // getters and setters are an important topic in OOP - below are examples for this class ;)
 
   getCohorts() {
     return this.getCohorts
