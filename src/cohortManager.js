@@ -5,8 +5,14 @@ class CohortManager {
     this.cohorts = []
   }
 
+  // getters and setters are an important topic in OOP - do some research on the topic ;)
+
   getCohorts() {
     return this.getCohorts
+  }
+
+  setCohorts(cohorts) {
+    this.cohorts = cohorts
   }
 
   createCohort(name) {
@@ -22,7 +28,10 @@ class CohortManager {
   removeCohort(name) {
     const cohortName = this.searchForCohort(name)
     if (cohortName) {
-      const filtered = this.cohorts.filter((cohort) => cohort.name !== name)
+      const filtered = this.cohorts.filter((cohort) => {
+        const thisName = cohort.getName()
+        return thisName !== name
+      })
       this.cohorts = filtered
       return true
     }

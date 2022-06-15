@@ -8,7 +8,10 @@ describe('Cohort', () => {
   })
 
   it('can create a cohort with a cohort name', () => {
-    const expected = { name: 'Cohort 6', students: [] }
+    const expected = {
+      name: 'Cohort 6',
+      students: []
+    }
     const result = cohortManager.createCohort(expected.name)
 
     // console.log('cohort', result)
@@ -31,9 +34,10 @@ describe('Cohort', () => {
     // execute
     cohortManager.createCohort('Cohort 6')
     const result = cohortManager.removeCohort('Cohort 6')
+    const thisCohorts = cohortManager.getCohorts()
     // verify
     expect(result).toEqual(expected)
-    expect(cohortManager.cohorts.length).toEqual(0)
+    expect(thisCohorts.length).toEqual(0)
   })
 
   it('can get cohort by name', () => {
@@ -48,7 +52,9 @@ describe('Cohort', () => {
   it('can add a student to a cohort', () => {
     // create required data structures
     const student = {
-      name: 'Steve',
+      id: 1,
+      first: 'Steve',
+      last: 'Huckle',
       email: 'steve@blah.com',
       githubUser: 'glowkeeper'
     }
@@ -63,19 +69,34 @@ describe('Cohort', () => {
     // execute code
     const thisCohort = cohortManager.createCohort(expected.name)
     // console.log('my cohort', thisCohort)
-    thisCohort.addStudent(student)
+    const thisStudent = thisCohort.addStudent(student)
+
+    const thisName = thisCohort.getName()
+    const cohortStudents = thisCohort.getStudents()
+
+    const id = thisStudent.getId()
+    const first = thisStudent.getFirst()
+    const last = thisStudent.getLast()
+    const email = thisStudent.getEmail()
+    const githubUser = thisStudent.getGithubUser()
 
     // match expectations
-    expect(thisCohort.name).toEqual(expected.name)
-    expect(thisCohort.students[0].name).toEqual(student.name)
-    expect(thisCohort.students[0].email).toEqual(student.email)
-    expect(thisCohort.students[0].githubUser).toEqual(student.githubUser)
+    expect(thisName).toEqual(expected.name)
+    expect(id).toEqual(student.id)
+    expect(first).toEqual(student.first)
+    expect(last).toEqual(student.last)
+    expect(email).toEqual(student.email)
+    expect(githubUser).toEqual(student.githubUser)
+    expect(cohortStudents[0].email).toEqual(student.email)
+    expect(cohortStudents[0].githubUser).toEqual(student.githubUser)
   })
 
   it('can remove a student from a cohort', () => {
     // set up
     const student = {
-      name: 'Steve',
+      id: 1,
+      first: 'Steve',
+      last: 'Huckle',
       email: 'steve@blah.com',
       githubUser: 'glowkeeper'
     }
@@ -92,15 +113,22 @@ describe('Cohort', () => {
     // console.log('my cohort', thisCohort)
     thisCohort.addStudent(student)
     thisCohort.removeStudent(student)
+
+    const thisName = thisCohort.getName()
+    const cohortStudents = thisCohort.getStudents()
+
+    // console.log('cohort students', cohortStudents)
     // verify
-    expect(thisCohort.name).toEqual(expected.name)
-    expect(thisCohort.students.length).toEqual(expected.students.length)
+    expect(thisName).toEqual(expected.name)
+    expect(cohortStudents.length).toEqual(expected.students.length)
   })
 
   it('can search for student', () => {
     // set up
     const student = {
-      name: 'Steve',
+      id: 1,
+      first: 'Steve',
+      last: 'Huckle',
       email: 'steve@blah.com',
       githubUser: 'glowkeeper'
     }
