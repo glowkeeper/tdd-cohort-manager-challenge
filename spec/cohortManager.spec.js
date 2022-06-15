@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const CohortManager = require('../src/cohortManager')
 
 describe('Cohort', () => {

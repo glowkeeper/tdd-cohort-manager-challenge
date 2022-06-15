@@ -8,7 +8,7 @@ class Student {
     this.githubUser = githubUser
   }
 
-  // getters and setters are an important topic in OOP - do some research on the topic ;)
+  // getters and setters are an important topic in OOP - below are examples for this class ;)
 
   setId(id) {
     this.id = id
