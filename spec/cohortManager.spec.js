@@ -8,7 +8,7 @@ describe('Cohort', () => {
   })
 
   it('can create a cohort with a cohort name', () => {
-    const expected = { name: 'Cohort 1000023', students: [] }
+    const expected = { name: 'Cohort 6', students: [] }
     const result = cohortManager.createCohort(expected.name)
 
     // console.log('cohort', result)
