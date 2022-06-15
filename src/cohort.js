@@ -6,16 +6,42 @@ class Cohort {
     this.students = []
   }
 
-  // I tend to write a 'getter' for all my classes, which just returns the instance.
-  // this is just a 'nice to have' - it's not totally necessary ;)
-  get() {
-    return this
+  getName() {
+    return this.name
+  }
+
+  getStudents() {
+    return this.students
   }
 
   addStudent(studentDetails) {
     const student = new Student(studentDetails)
     this.students.push(student)
     return student
+  }
+
+  searchForStudent(studentDetails) {
+    const found = this.students.some(
+      (student) =>
+        student.name === studentDetails.name &&
+        student.email === studentDetails.email &&
+        student.githubUser === studentDetails.githubUser
+    )
+    return found
+  }
+
+  removeStudent(studentDetails) {
+    const found = this.searchForStudent(studentDetails)
+    if (found) {
+      const filtered = this.students.filter(
+        (student) =>
+          student.name !== studentDetails.name &&
+          student.email !== studentDetails.email &&
+          student.githubUser !== studentDetails.githubUser
+      )
+      this.students = filtered
+    }
+    return found
   }
 }
 

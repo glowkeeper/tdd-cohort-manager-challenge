@@ -6,10 +6,16 @@ class Student {
     this.githubUser = githubUser
   }
 
-  // I tend to write a 'getter' for all my classes, which just returns the instance.
-  // this is just a 'nice to have' - it's not totally necessary ;)
-  get() {
-    return this
+  getName() {
+    return this.name
+  }
+
+  getEmail() {
+    return this.email
+  }
+
+  getGithubUser() {
+    return this.githubUser
   }
 }
 

@@ -5,10 +5,8 @@ class CohortManager {
     this.cohorts = []
   }
 
-  // I tend to write a 'getter' for all my classes, which just returns the instance.
-  // this is just a 'nice to have' - it's not totally necessary ;)
-  get() {
-    return this
+  getCohorts() {
+    return this.getCohorts
   }
 
   createCohort(name) {
@@ -17,14 +15,18 @@ class CohortManager {
     return cohort
   }
 
-  removeCohort(name) {}
+  searchForCohort(name) {
+    return this.cohorts.find((cohort) => cohort.name === name)
+  }
 
-  getCohort(name) {
-    for (let i = 0; i < this.cohorts.length; i++) {
-      const cohort = this.cohorts[i]
-      const myName = cohort.name
-      if (name === myName) return cohort
+  removeCohort(name) {
+    const cohortName = this.searchForCohort(name)
+    if (cohortName) {
+      const filtered = this.cohorts.filter((cohort) => cohort.name !== name)
+      this.cohorts = filtered
+      return true
     }
+    return false
   }
 }
 
